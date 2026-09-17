@@ -1,6 +1,8 @@
 import { View, Text, StyleProp, ViewStyle, TextStyle, TouchableOpacity } from 'react-native'
 import React, { ReactNode } from 'react'
 import TextComponent from './TextComponent';
+import {GlobalStyles} from '../style/GlobalStyles';
+import { colors } from '../constants/appColor';
 
 interface Props {
     icon? : ReactNode ,
@@ -20,13 +22,15 @@ const ButtonComponent = (props: Props) => {
         text , textColor , textStyles ,
         type , styles , color ,onPress , iconFlex
     } = props ;
-  return (
-    <TouchableOpacity>
+  return type === 'primary' ? (
+    <TouchableOpacity onPress={onPress} style={[GlobalStyles.button , {backgroundColor: color ?? colors.primary}]}>
         {icon && iconFlex === 'left' && icon}
-        <TextComponent text={text} color={textColor} styles={textStyles}/>
+        <TextComponent text={text} color={textColor ?? colors.white} styles={[textStyles , {marginLeft: icon  ? 12 : 0}]} flex={icon ?? iconFlex === 'right' ? 1 : 0}/>
         {icon && iconFlex === 'right' && icon}
     </TouchableOpacity>
-  )
+  ) : <TouchableOpacity>
+    <TextComponent text={text} color={type === 'link' ? colors.primary : colors.text}/>
+  </TouchableOpacity>
 }
 
 export default ButtonComponent

@@ -4,6 +4,7 @@ export const colors = {
     text: "#120D26",
     gray: "#607575",
     gray2: "#DADADA",
+    link: "#5669FF"
     
 
 }
