@@ -4,6 +4,8 @@ import { GlobalStyles } from '../../style/GlobalStyles';
 import Swiper from 'react-native-swiper';
 import { appInfors } from '../../constants/appInfors';
 import { colors } from '../../constants/appColor';
+import { TextComponent } from '../../components';
+import { fontFamilies } from '../../constants/fontFamilies';
 
 
 const OnboardingScreen = ({navigation} : any) => {
@@ -26,8 +28,8 @@ const OnboardingScreen = ({navigation} : any) => {
         justifyContent: 'space-between',
         alignItems: 'center'
       }]}>
-        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}><Text style={[styles.text , {color: colors.gray2}]}>Skip</Text></TouchableOpacity>
-        <TouchableOpacity onPress={() => index < 2 ? setIndex(index + 1) : navigation.navigate('LoginScreen')}><Text style={[styles.text]}>Next</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}><TextComponent text='Skip' color='#000' size={20} font={fontFamilies.medium} styles={[styles.text]}/></TouchableOpacity>
+        <TouchableOpacity onPress={() => index < 2 ? setIndex(index + 1) : navigation.navigate('LoginScreen')}><TextComponent title text='Next' color={colors.white} size={20} font={fontFamilies.medium} styles={[styles.text]}/></TouchableOpacity>
       </View>
     </View>
   );
@@ -37,9 +39,6 @@ export default OnboardingScreen;
 
 const styles = StyleSheet.create({
   text: {
-    color: colors.white,
-    fontSize: 20,
-    fontWeight: 500,
     bottom: 10
   }
 })
